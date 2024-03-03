@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROYAL Chat Room</title>
+    <!-- <script defer src="http://localhost:8000/socket.io/socket.io.js"></script> -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script defer src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <img class="logo" src="img.jpg" alt="" />
+      <h1>ROYAL Chatting Room</h1>
+    </nav>
+    <div class="container"></div>
+    <div class="send">
+      <form action="#" id="send-container">
+        <input
+          type="text"
+          name="messageinp"
+          id="messageinp"
+          placeholder="Type your message here..."
+        />
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </div>
+    <div class="CurrentMembersContainer">
+      <h2>Current Members</h2>
+      <ul id="CurrentMembers"></ul>
+    </div>
+  </body>
+</html>
