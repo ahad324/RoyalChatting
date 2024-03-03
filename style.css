@@ -39,7 +39,7 @@ h2 {
   max-width: 955px;
   height: 60vh;
   margin: auto;
-  padding: 20px;
+  padding:25px 0px 0px 0px;
   overflow-y: auto;
   margin-bottom: 23px;
   box-shadow: var(--box-shadow);
