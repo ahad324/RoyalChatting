@@ -1,10 +1,10 @@
-const io = require("socket.io")(8000, {
+const server = require("http").createServer();
+const io = require("socket.io")(server, {
   cors: {
-    origin: "http://127.0.0.1:5500",
+    origin: "https://royalchatting.netlify.app",
     methods: ["GET", "POST"],
   },
 });
-
 const users = {};
 io.on("connection", (socket) => {
   socket.on("new-user-joined", (name) => {
@@ -24,3 +24,13 @@ io.on("connection", (socket) => {
     delete users[socket.id];
   });
 });
+
+module.exports = (req, res) => {
+  if (req.method === "GET") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("Hello, World!");
+  } else if (req.method === "POST") {
+    // Allow socket.io to handle the request
+    server.emit("request", req, res);
+  }
+};
