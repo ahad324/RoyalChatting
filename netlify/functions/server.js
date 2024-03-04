@@ -1,11 +1,19 @@
-const server = require("http").createServer();
-const io = require("socket.io")(server, {
+const serverless = require("serverless-http");
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+
+const app = express();
+
+const httpServer = http.createServer(app);
+
+const io = socketIo(httpServer, {
   cors: {
     origin: "https://royalchatting.netlify.app",
-    // origin: "http://127.0.0.1:5500",
-    methods: ["GET", "POST"],
-  },
+    methods: ["GET", "POST"]
+  }
 });
+
 const users = {};
 io.on("connection", (socket) => {
   socket.on("new-user-joined", (name) => {
@@ -26,12 +34,18 @@ io.on("connection", (socket) => {
   });
 });
 
-module.exports.handler = (req, res) => {
-  if (req.method === "GET") {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("Hello, World!");
-  } else if (req.method === "POST") {
-    // Allow socket.io to handle the request
-    server.emit("request", req, res);
-  }
+// Handle HTTP requests
+app.use((req, res) => {
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello, World!");
+});
+
+// Wrap the Express app to make it compatible with serverless environments
+const handler = serverless(httpServer);
+
+// Export the handler
+module.exports.handler = async (event, context) => {
+  // Call the handler function
+  const result = await handler(event, context);
+  return result;
 };
