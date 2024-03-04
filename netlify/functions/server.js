@@ -2,7 +2,7 @@ const server = require("http").createServer();
 const io = require("socket.io")(server, {
   cors: {
     origin: "https://royalchatting.netlify.app",
-    // origin: "http://localhost:8888",
+    // origin: "http://127.0.0.1:5500",
     methods: ["GET", "POST"],
   },
 });
@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
   });
 });
 
-module.exports = (req, res) => {
+module.exports.handler = (req, res) => {
   if (req.method === "GET") {
     res.writeHead(200, { "Content-Type": "text/plain" });
     res.end("Hello, World!");
