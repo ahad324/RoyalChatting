@@ -9,7 +9,7 @@ const httpServer = http.createServer(app);
 
 const io = socketIo(httpServer, {
   cors: {
-    origin: "https://royalchatting.netlify.app",
+    origin: "*",
     methods: ["GET", "POST"]
   }
 });
