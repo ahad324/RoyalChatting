@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function (e) {
   // const socket = io("http://localhost:8000");
-  const socket = io("/.netlify/functions/server.js");
+  // const socket = io("/.netlify/functions/server.js");
+  const socket = io("https://royalchatting.netlify.app/.netlify/functions/server");
   // const socket = io();
   const messagecontainer = document.querySelector(".container");
   const form = document.getElementById("send-container");
