@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-  // fetch("https://royalchatting.netlify.app/.netlify/functions/server").then(response=>response).then((response)=>{console.log(response.status)})
+  fetch("https://royalchatting.netlify.app/.netlify/functions/server").then(response=>response).then((response)=>{console.log(response.status)})
   // const socket = io("http://localhost:8000");
-  const socket = io(".netlify/functions/server");
-  // const socket = io("https://royalchatting.netlify.app/.netlify/functions/server");
+  // const socket = io("/.netlify/functions/server");
+  const socket = io("https://royalchatting.netlify.app/.netlify/functions/server");
   // const socket = io()
   const messagecontainer = document.querySelector(".container");
   const form = document.getElementById("send-container");
