@@ -38,8 +38,16 @@ io.on("connection", (socket) => {
 });
 
 router.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hellow World!");
+});
+// Define a route for the /socket.io endpoint
+router.get("/socket.io", (req, res) => {
+  // Handle requests to /socket.io here if needed
+  res.send("Socket.io endpoint");
 });
 
+// Mount the router at the desired endpoint
+app.use("/.netlify/functions/server", router);
+
 // Export the serverless function handler
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(httpServer);
