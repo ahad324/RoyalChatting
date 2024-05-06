@@ -5,8 +5,10 @@ const socketIo = require("socket.io");
 
 const app = express();
 
+// Initialize a simple HTTP server
 const httpServer = http.createServer(app);
 
+// Initialize Socket.io on the HTTP server
 const io = socketIo(httpServer, {
   cors: {
     origin: "*",
@@ -34,18 +36,11 @@ io.on("connection", (socket) => {
   });
 });
 
-// Handle HTTP requests
-app.use((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Hello, World!");
+// Define a route for the /socket.io endpoint
+app.get("/socket.io", (req, res) => {
+  // Handle requests to /socket.io here if needed
+  res.send("Socket.io endpoint");
 });
 
-// Wrap the Express app to make it compatible with serverless environments
-const handler = serverless(httpServer);
-
-// Export the handler
-module.exports.handler = async (event, context) => {
-  // Call the handler function
-  const result = await handler(event, context);
-  return result;
-};
+// Export the serverless function handler
+module.exports.handler = serverless(httpServer);
