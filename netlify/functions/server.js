@@ -47,7 +47,7 @@ router.get("/socket.io", (req, res) => {
 });
 
 // Mount the router at the desired endpoint
-app.use("/", router);
+app.use("/socket.io", router);
 
 // Export the serverless function handler
 module.exports.handler = serverless(httpServer);
