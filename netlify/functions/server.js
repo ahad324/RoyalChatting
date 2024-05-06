@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
 });
 
 // Define a route for the /socket.io endpoint
-app.get("/socket.io", (req, res) => {
+app.get(".netlify/functions/server/socket.io", (req, res) => {
   // Handle requests to /socket.io here if needed
   res.send("Socket.io endpoint");
 });
