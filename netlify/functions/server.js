@@ -4,6 +4,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 
 const app = express();
+const router = express.Router();
 
 // Initialize a simple HTTP server
 const httpServer = http.createServer(app);
@@ -37,10 +38,13 @@ io.on("connection", (socket) => {
 });
 
 // Define a route for the /socket.io endpoint
-app.get(".netlify/functions/server/socket.io", (req, res) => {
+router.get("/socket.io", (req, res) => {
   // Handle requests to /socket.io here if needed
   res.send("Socket.io endpoint");
 });
+
+// Mount the router at the desired endpoint
+app.use("/.netlify/functions/server", router);
 
 // Export the serverless function handler
 module.exports.handler = serverless(httpServer);
