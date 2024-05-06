@@ -47,7 +47,7 @@ router.get("/socket.io", (req, res) => {
 });
 
 // Mount the router at the desired endpoint
-app.use("/socket.io", router);
+app.use("/.netlify/functions/server", router);
 
 // Export the serverless function handler
 module.exports.handler = serverless(httpServer);
