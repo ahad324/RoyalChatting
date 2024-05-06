@@ -37,6 +37,9 @@ io.on("connection", (socket) => {
   });
 });
 
+router.get("/", (req, res) => {
+  res.send("Hellow World!");
+});
 // Define a route for the /socket.io endpoint
 router.get("/socket.io", (req, res) => {
   // Handle requests to /socket.io here if needed
